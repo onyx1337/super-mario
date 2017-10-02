@@ -15,5 +15,7 @@ export default class Level {
         this.entities.forEach(entity => {
             entity.update(deltaTime);
         });
+
+        this.tileCollision.update();
     }
 }

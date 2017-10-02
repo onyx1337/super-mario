@@ -16,6 +16,7 @@ Promise.all([
 
     const gravity = 2000;
     mario.pos.set(64, 64);
+    mario.vel.set(50, 0);
 
     level.entities.add(mario);
 

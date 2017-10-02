@@ -1,3 +1,4 @@
+import BoundingBox from './BoundingBox.js';
 import {Vec2} from './math.js';
 
 export class Trait {
@@ -15,6 +16,7 @@ export default class Entity {
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
+        this.bounds = new BoundingBox(this.pos, this.size);
 
         this.traits = [];
     }

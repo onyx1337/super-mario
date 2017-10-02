@@ -8,6 +8,8 @@ export function createMario() {
     .then(sprite => {
         const mario = new Entity();
 
+        mario.size.set(14, 16);
+
         mario.addTrait(new Velocity());
         mario.addTrait(new Jump());
 

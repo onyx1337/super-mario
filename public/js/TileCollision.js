@@ -24,7 +24,7 @@ export default class TileCollision {
             const gridTile = this.resolveGridTile(entity.pos.x, entity.pos.y);
             if (gridTile) {
                 if (gridTile.tile.name === 'ground') {
-                    entity.pos.y = gridTile.tileY * TILE_SIZE;
+                    entity.pos.y = gridTile.tileY * TILE_SIZE - entity.size.y;
                     entity.vel.y = 0;
                     console.log('on ground');
                 }

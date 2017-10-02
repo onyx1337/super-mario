@@ -1,3 +1,5 @@
+import {Matrix} from './math.js';
+
 export function createBackgroundLayer(tiles, sprites) {
     const buffer = document.createElement('canvas');
     buffer.width = 256;
@@ -18,5 +20,24 @@ export function createSpriteLayer(entities) {
         entities.forEach(entity => {
             entity.draw(context);
         });
+    };
+}
+
+export function createCollisionLayer(level) {
+    const usedTiles = new Matrix();
+    const getTile = level.collision.getTile;
+    level.collision.getTile = function fakeGetTile(x, y) {
+        usedTiles.set(x, y, true);
+        return getTile.call(level.collision, x, y);
+    }
+
+    return function drawCollisions(context) {
+        context.strokeStyle = 'blue';
+        usedTiles.forEach((value, x, y) => {
+            context.beginPath();
+            context.rect(x * 16, y * 16, 16, 16);
+            context.stroke();
+        });
+        usedTiles.clear();
     };
 }

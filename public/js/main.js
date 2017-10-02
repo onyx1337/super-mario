@@ -15,6 +15,9 @@ Promise.all([
 .then(([mario, level]) => {
     const gravity = 2000;
     mario.pos.set(64, 180);
+    mario.vel.set(0, -600);
+
+    console.log(level);
 
     level.entities.add(mario);
 
@@ -28,6 +31,17 @@ Promise.all([
             mario.jump.cancel();
         }
     });
+    input.addMapping(39, keyState => {
+        if (keyState) {
+            mario.vel.x = 200;
+        }
+    });
+    input.addMapping(37, keyState => {
+        if (keyState) {
+            mario.vel.x = -200;
+        }
+    });
+
     input.listenTo(window);
 
     level.entities.add(mario);

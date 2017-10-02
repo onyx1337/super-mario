@@ -41,7 +41,7 @@ Promise.all([
 
     input.listenTo(window);
 
-    canvas.addEventListener('mousemove', event => {
+    canvas.addEventListener('mousedown', event => {
         if (event.buttons === 1) {
             mario.vel.set(0, 0);
             mario.pos.set(event.offsetX, event.offsetY);

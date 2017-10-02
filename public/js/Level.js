@@ -8,14 +8,18 @@ export default class Level {
         this.entities = new Set();
         this.tiles = new Matrix();
 
-        this.tileCollision = new TileCollision(this.tiles, this.entities);
+        this.tileCollision = new TileCollision(this.tiles);
     }
 
     update(deltaTime) {
         this.entities.forEach(entity => {
             entity.update(deltaTime);
-        });
 
-        this.tileCollision.update();
+            entity.pos.x += entity.vel.x * deltaTime;
+            this.tileCollision.checkX(entity);
+
+            entity.pos.y += entity.vel.y * deltaTime;
+            this.tileCollision.checkY(entity);
+        });
     }
 }

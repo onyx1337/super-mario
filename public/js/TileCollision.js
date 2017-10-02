@@ -22,7 +22,11 @@ export default class TileCollision {
     update() {
         this.entities.forEach(entity => {
             const gridTile = this.resolveGridTile(entity.pos.x, entity.pos.y);
-            console.log(gridTile);
+            if (gridTile) {
+                if (gridTile.tile.name === 'ground') {
+                    console.log('on ground');
+                }
+            }
         });
     }
 }

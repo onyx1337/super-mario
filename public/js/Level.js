@@ -1,4 +1,5 @@
 import Compositor from './Compositor.js';
+import TileCollision from './TileCollision.js';
 import {Matrix} from './math.js';
 
 export default class Level {
@@ -6,6 +7,8 @@ export default class Level {
         this.comp = new Compositor();
         this.entities = new Set();
         this.tiles = new Matrix();
+
+        this.tileCollision = new TileCollision(this.tiles, this.entities);
     }
 
     update(deltaTime) {

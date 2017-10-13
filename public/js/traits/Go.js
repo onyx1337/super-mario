@@ -1,14 +1,5 @@
 import {Trait} from '../Entity.js';
-
-function clamp(value, min, max) {
-    if (value > max) {
-        return max;
-    }
-    if (value < min) {
-        return min;
-    }
-    return value;
-}
+import {clamp} from '../math.js';
 
 export default class Go extends Trait {
     constructor() {

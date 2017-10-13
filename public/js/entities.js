@@ -13,6 +13,9 @@ export function createMario() {
         mario.addTrait(new Jump());
 
         function pickFrame(mario) {
+            if (mario.go.runTime > 0) {
+                return 'run-1';
+            }
             return 'idle';
         }
 

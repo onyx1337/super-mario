@@ -26,8 +26,8 @@ export default class Go extends Trait {
                 entity.vel.x + this.acceleration * deltaTime * this.dir,
                 -this.speedLimit,
                 this.speedLimit);
-
-            this.distance += Math.abs(entity.vel.x) * deltaTime;
         }
+
+        this.distance += Math.abs(entity.vel.x) * deltaTime;
     }
 }

@@ -12,8 +12,11 @@ export function createMario() {
         mario.addTrait(new Go());
         mario.addTrait(new Jump());
 
+        const runningFrames = ['run-1', 'run-2', 'run-3'];
+        const runningFrameDistance = 10;
         function pickFrame(mario) {
-            if (mario.go.runTime > 0) {
+            if (mario.go.distance > 0) {
+                console.log(mario.go.distance / runningFrameDistance);
                 return 'run-1';
             }
             return 'idle';

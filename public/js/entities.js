@@ -17,7 +17,8 @@ export function createMario() {
         function pickFrame(mario) {
             if (mario.go.distance > 0) {
                 const frameIndex = Math.floor(mario.go.distance / runningFrameDistance) % runningFrames.length;
-                console.log(frameIndex);
+                const frameName = runningFrames[frameIndex];
+                console.log(frameIndex, frameName);
                 return 'run-1';
             }
             return 'idle';

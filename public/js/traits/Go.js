@@ -9,13 +9,18 @@ export default class Go extends Trait {
         this.acceleration = 400;
         this.deceleration = 200;
         this.speedLimit = 200;
+        this.stopThreshold = 1;
         this.distance = 0;
     }
 
     update(entity, deltaTime) {
         if (this.dir === 0) {
-            this.distance = 0;
-            entity.vel.x -= this.deceleration * deltaTime * (entity.vel.x > 0 ? 1 : -1);
+            if (Math.abs(entity.vel.x) < this.stopThreshold) {
+                this.distance = 0;
+                entity.vel.x = 0;
+            } else {
+                entity.vel.x -= this.deceleration * deltaTime * (entity.vel.x > 0 ? 1 : -1);
+            }
         } else {
             entity.vel.x = clamp(
                 entity.vel.x + this.acceleration * deltaTime * this.dir,

@@ -16,7 +16,7 @@ export function createMario() {
         const runningFrameDistance = 10;
         function pickFrame(mario) {
             if (mario.go.distance > 0) {
-                console.log(mario.go.distance / runningFrameDistance);
+                console.log(Math.floor(mario.go.distance / runningFrameDistance));
                 return 'run-1';
             }
             return 'idle';

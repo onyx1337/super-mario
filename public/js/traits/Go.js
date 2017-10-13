@@ -1,5 +1,15 @@
 import {Trait} from '../Entity.js';
 
+function clamp(value, min, max) {
+    if (value > max) {
+        return max;
+    }
+    if (value < min) {
+        return min;
+    }
+    return value;
+}
+
 export default class Go extends Trait {
     constructor() {
         super('go');
@@ -11,12 +21,10 @@ export default class Go extends Trait {
     }
 
     update(entity, deltaTime) {
-        entity.vel.x += this.acceleration * deltaTime * this.dir;
-        if (entity.vel.x > this.speedLimit) {
-            entity.vel.x = this.speedLimit;
-        } else if (entity.vel.x < -this.speedLimit) {
-            entity.vel.x = -this.speedLimit;
-        }
+        entity.vel.x = clamp(
+            entity.vel.x + this.acceleration * deltaTime * this.dir,
+            -this.speedLimit,
+            this.speedLimit);
 
         if (this.dir === 0) {
             this.distance = 0;

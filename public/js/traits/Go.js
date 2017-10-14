@@ -6,6 +6,7 @@ export default class Go extends Trait {
         super('go');
 
         this.dir = 0;
+        this.heading = 1;
         this.acceleration = 400;
         this.deceleration = 200;
         this.speedLimit = 200;
@@ -22,6 +23,7 @@ export default class Go extends Trait {
                 entity.vel.x -= this.deceleration * deltaTime * (entity.vel.x > 0 ? 1 : -1);
             }
         } else {
+            this.heading = this.dir;
             entity.vel.x = clamp(
                 entity.vel.x + this.acceleration * deltaTime * this.dir,
                 -this.speedLimit,

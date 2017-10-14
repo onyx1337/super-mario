@@ -1,15 +1,8 @@
 import Entity from '../Entity.js';
 import Go from '../traits/Go.js';
 import Jump from '../traits/Jump.js';
+import {createAnim} from '../anim.js';
 import {loadSpriteSheet} from '../loaders.js';
-
-function createAnim(frames, frameLen) {
-    return function resolveFrame(distance) {
-        const frameIndex = Math.floor(distance / frameLen) % frames.length;
-        const frameName = frames[frameIndex];
-        return frameName;
-    }
-}
 
 function createMarioFactory(sprite) {
     const runAnim = createAnim(['run-1', 'run-2', 'run-3'], 10);

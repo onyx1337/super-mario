@@ -36,7 +36,7 @@ export function createMario() {
 
         mario.draw = function drawMario(context) {
 
-            sprite.draw(pickFrame(this), context, 0, 0);
+            sprite.draw(pickFrame(this), context, 0, 0, mario.go.dir < 0);
         }
 
         return mario;

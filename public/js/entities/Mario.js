@@ -3,9 +3,16 @@ import Go from '../traits/Go.js';
 import Jump from '../traits/Jump.js';
 import {loadSpriteSheet} from '../loaders.js';
 
+function createAnim(frames, frameLen) {
+    return function resolveFrame(distance) {
+        const frameIndex = Math.floor(distance / frameLen) % frames.length;
+        const frameName = frames[frameIndex];
+        return frameName;
+    }
+}
+
 function createMarioFactory(sprite) {
-    const runningFrames = ['run-1', 'run-2', 'run-3'];
-    const runningFrameDistance = 10;
+    const runAnim = createAnim(['run-1', 'run-2', 'run-3'], 10);
 
     function pickFrame(mario) {
         if (mario.jump.stability === 0) {
@@ -20,9 +27,7 @@ function createMarioFactory(sprite) {
                 return 'break';
             }
 
-            const frameIndex = Math.floor(mario.go.distance / runningFrameDistance) % runningFrames.length;
-            const frameName = runningFrames[frameIndex];
-            return frameName;
+            return runAnim(mario.go.distance);
         }
         return 'idle';
     }

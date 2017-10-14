@@ -23,7 +23,10 @@ export default class Go extends Trait {
                 entity.vel.x -= this.deceleration * deltaTime * (entity.vel.x > 0 ? 1 : -1);
             }
         } else {
-            this.heading = this.dir;
+            if (entity.jump && entity.jump.stability > 1) {
+                this.heading = this.dir;
+            }
+
             entity.vel.x = clamp(
                 entity.vel.x + this.acceleration * deltaTime * this.dir,
                 -this.speedLimit,
